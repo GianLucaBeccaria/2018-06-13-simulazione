@@ -5,31 +5,30 @@ import java.time.LocalDateTime;
 public class Flight {
 
 	private int id;
-	private String airlineId;
-	private int flightNumber;
-	private String originAirportId;
-	private String destinationAirportId;
-	private LocalDateTime scheduledDepartureDate;
-	private LocalDateTime arrivalDate;
-	private int departureDelay;
-	private int arrivalDelay;
-	private int airTime;
-	private int distance;
+	private Airline airline;
+//	private int flightNumber;
+	private Airport originAirport;
+	private Airport destinationAirport;
+//	private LocalDateTime scheduledDepartureDate;
+//	private LocalDateTime arrivalDate;
+	private double departureDelay;
+	private double arrivalDelay;
+//	private int airTime;
+//	private int distance;
 	
-	public Flight(int id, String airlineId, int flightNumber, String originAirportId, String destinationAirportId,
-			LocalDateTime scheduledDepartureDate, LocalDateTime arrivalDate, int departureDelay, int arrivalDelay,
-			int airTime, int distance) {
+	public Flight(int id, Airline airline, Airport originAirport, Airport destinationAirport,double d, double e)
+			{
 		this.id = id;
-		this.airlineId = airlineId;
-		this.flightNumber = flightNumber;
-		this.originAirportId = originAirportId;
-		this.destinationAirportId = destinationAirportId;
-		this.scheduledDepartureDate = scheduledDepartureDate;
-		this.arrivalDate = arrivalDate;
-		this.departureDelay = departureDelay;
-		this.arrivalDelay = arrivalDelay;
-		this.airTime = airTime;
-		this.distance = distance;
+		this.airline = airline;
+//		this.flightNumber = flightNumber;
+		this.originAirport = originAirport;
+		this.destinationAirport = destinationAirport;
+//		this.scheduledDepartureDate = scheduledDepartureDate;
+//		this.arrivalDate = arrivalDate;
+		this.departureDelay = d;
+		this.arrivalDelay = e;
+//		this.airTime = airTime;
+//		this.distance = distance;
 	}
 
 	public int getId() {
@@ -40,55 +39,31 @@ public class Flight {
 		this.id = id;
 	}
 
-	public String getAirlineId() {
-		return airlineId;
+	public Airline getAirline() {
+		return airline;
 	}
 
-	public void setAirlineId(String airlineId) {
-		this.airlineId = airlineId;
+	public void setAirline(Airline airline) {
+		this.airline = airline;
 	}
 
-	public int getFlightNumber() {
-		return flightNumber;
+	public Airport getOriginAirport() {
+		return originAirport;
 	}
 
-	public void setFlightNumber(int flightNumber) {
-		this.flightNumber = flightNumber;
+	public void setOriginAirport(Airport originAirport) {
+		this.originAirport = originAirport;
 	}
 
-	public String getOriginAirportId() {
-		return originAirportId;
+	public Airport getDestinationAirport() {
+		return destinationAirport;
 	}
 
-	public void setOriginAirportId(String originAirportId) {
-		this.originAirportId = originAirportId;
+	public void setDestinationAirport(Airport destinationAirport) {
+		this.destinationAirport = destinationAirport;
 	}
 
-	public String getDestinationAirportId() {
-		return destinationAirportId;
-	}
-
-	public void setDestinationAirportId(String destinationAirportId) {
-		this.destinationAirportId = destinationAirportId;
-	}
-
-	public LocalDateTime getScheduledDepartureDate() {
-		return scheduledDepartureDate;
-	}
-
-	public void setScheduledDepartureDate(LocalDateTime scheduledDepartureDate) {
-		this.scheduledDepartureDate = scheduledDepartureDate;
-	}
-
-	public LocalDateTime getArrivalDate() {
-		return arrivalDate;
-	}
-
-	public void setArrivalDate(LocalDateTime arrivalDate) {
-		this.arrivalDate = arrivalDate;
-	}
-
-	public int getDepartureDelay() {
+	public double getDepartureDelay() {
 		return departureDelay;
 	}
 
@@ -96,7 +71,7 @@ public class Flight {
 		this.departureDelay = departureDelay;
 	}
 
-	public int getArrivalDelay() {
+	public double getArrivalDelay() {
 		return arrivalDelay;
 	}
 
@@ -104,48 +79,34 @@ public class Flight {
 		this.arrivalDelay = arrivalDelay;
 	}
 
-	public int getAirTime() {
-		return airTime;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
 	}
 
-	public void setAirTime(int airTime) {
-		this.airTime = airTime;
-	}
-
-	public int getDistance() {
-		return distance;
-	}
-
-	public void setDistance(int distance) {
-		this.distance = distance;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Flight other = (Flight) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Flight [id=");
-		builder.append(id);
-		builder.append(", airlineId=");
-		builder.append(airlineId);
-		builder.append(", flightNumber=");
-		builder.append(flightNumber);
-		builder.append(", originAirportId=");
-		builder.append(originAirportId);
-		builder.append(", destinationAirportId=");
-		builder.append(destinationAirportId);
-		builder.append(", scheduledDepartureDate=");
-		builder.append(scheduledDepartureDate);
-		builder.append(", arrivalDate=");
-		builder.append(arrivalDate);
-		builder.append(", departureDelay=");
-		builder.append(departureDelay);
-		builder.append(", arrivalDelay=");
-		builder.append(arrivalDelay);
-		builder.append(", airTime=");
-		builder.append(airTime);
-		builder.append(", distance=");
-		builder.append(distance);
-		builder.append("]");
-		return builder.toString();
+		return "Flight [id=" + id + ", airline=" + airline + ", originAirport=" + originAirport
+				+ ", destinationAirport=" + destinationAirport + ", departureDelay=" + departureDelay
+				+ ", arrivalDelay=" + arrivalDelay + "]";
 	}
+
+	
 }
